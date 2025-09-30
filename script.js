@@ -21,6 +21,7 @@ const questions = [
       }
     ];
 
+    //finding elements bt id and storing in variables
     const question =document.getElementById("question-id");
     const answerButtons =document.querySelectorAll(".buttons");
     const feedBack = document.getElementById("feed-back");
@@ -31,6 +32,8 @@ const questions = [
     let currentQuestionIndex = 0;
     let score = 0;
 
+
+    //function to display question and choices
     function displayQuestion(currentQuestionIndex){
     let currentQuestion = questions[currentQuestionIndex]
     question.textContent=currentQuestion.question;
@@ -44,7 +47,7 @@ const questions = [
 
     });
 }
-     //let score=0;
+     //addEventListener to answerButtons for selected answer
     answerButtons.forEach((btn ,index )=>{
         btn.addEventListener("click",()=> handleAnswer(index));
     });
@@ -59,26 +62,28 @@ const questions = [
             else{
                 feedBack.textContent ="incorrect";
             }
-            answerButtons.forEach(btn=>btn.disabled=true);
+
+            answerButtons.forEach(btn=>btn.disabled=true);//disable buttons after selection
         }
             
         
-            //btn.disabled=true;
+            
         //});//feedBack.textContent="";
-    //});
-//};
+    
+
  
 //displayQuestion(currentQuestionIndex);
 
 
-
+//addEventListener to nextQuestion
     nextQuestion.addEventListener("click",()=>{
         currentQuestionIndex++;
         if(currentQuestionIndex < questions.length){
     
 
         displayQuestion(currentQuestionIndex);
-        }else{
+        }
+        else{
             
             question.textContent = "Quiz Finished!";
     feedBack.textContent = "";
@@ -89,12 +94,9 @@ const questions = [
     nextQuestion.disabled = true; // disable next button after quiz ends
   }
         
-        
-     
+});
 
-    });
-
-
+   //Initial function call
     displayQuestion(currentQuestionIndex);
 
 
